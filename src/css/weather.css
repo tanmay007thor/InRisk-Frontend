@@ -1,0 +1,97 @@
+/* weather.css */
+
+/* General container styles */
+.weather-form-container {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Heading styles */
+h4 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Grid layout for form elements */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.form-row .MuiGrid-item {
+  flex: 1;
+  min-width: 250px;
+}
+
+input, button {
+  border-radius: 12px !important;
+}
+
+/* TextField styles for input elements */
+.MuiTextField-root {
+  margin-bottom: 20px;
+}
+
+.MuiOutlinedInput-root {
+  border-radius: 12px !important;
+}
+
+.MuiInputLabel-root {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
+/* Button Styling */
+button {
+  background-color: #1976d2;
+  color: #fff;
+  border-radius: 12px;
+  padding: 12px 25px;
+  font-size: 16px;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #1565c0;
+  transform: scale(1.05);
+}
+
+/* Table Styling */
+.MuiTableCell-root {
+  padding: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.MuiTableRow-root:hover {
+  background-color: #f5f5f5;
+}
+
+.MuiTablePagination-root {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .weather-form-container {
+    padding: 20px;
+    width: 90%;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+}
+

@@ -1,0 +1,23 @@
+/* Apply background image to the whole page */
+body {
+  background-image: url('/public/background.jpg'); /* Correct path without '/public' */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Full height of the viewport */
+}
+
+/* Apply padding for content in .App */
+.App {
+  padding-top: 20px;   /* Adds space on top of the app */
+  padding-left: 20px;  /* Adds space on the left */
+  padding-right: 20px; /* Adds space on the right */
+  padding-bottom: 20px; /* Adds space at the bottom of the app */
+}
+
+/* Add margin-top for spacing between Navbar and other content */
+.app-container {
+  margin-top: 20px;
+}
