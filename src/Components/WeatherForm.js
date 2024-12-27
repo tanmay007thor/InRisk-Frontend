@@ -128,6 +128,18 @@ const WeatherForm = () => {
   useEffect(() => {
     if (!chartRef.current || !dates.length || !temperature.length) return;
 
+    // Helper function to calculate the rolling mean
+    const calculateRollingMean = (data, windowSize) => {
+      return data.map((_, idx, arr) => {
+        if (idx < windowSize - 1) return null; // Not enough data for the rolling mean
+        const window = arr.slice(idx - windowSize + 1, idx + 1);
+        const sum = window.reduce((acc, val) => acc + val, 0);
+        return sum / windowSize;
+      });
+    };
+
+    const rollingMean = calculateRollingMean(temperature, 7); // 7-point moving average
+
     const ctx = chartRef.current.getContext("2d");
 
     const data = {
@@ -139,6 +151,15 @@ const WeatherForm = () => {
           borderColor: "rgb(75, 192, 192)",
           backgroundColor: "rgba(75, 192, 192, 0.2)",
           fill: true,
+          tension: 0.1,
+        },
+        {
+          label: "7-Day Rolling Mean",
+          data: rollingMean,
+          borderColor: "rgb(255, 99, 132)",
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          fill: false,
+          borderDash: [5, 5],
           tension: 0.1,
         },
       ],
@@ -161,7 +182,7 @@ const WeatherForm = () => {
           },
           title: {
             display: true,
-            text: "Temperature Over Time",
+            text: "Temperature Over Time with Trendline",
             font: {
               size: 20,
             },
@@ -172,7 +193,10 @@ const WeatherForm = () => {
             bodyColor: "#fff",
             callbacks: {
               label: (tooltipItem) => {
-                return `Temperature: ${tooltipItem.raw}°C`;
+                const datasetLabel = tooltipItem.dataset.label || "";
+                const value =
+                  tooltipItem.raw === null ? "N/A" : `${tooltipItem.raw}°C`;
+                return `${datasetLabel}: ${value}`;
               },
             },
           },
